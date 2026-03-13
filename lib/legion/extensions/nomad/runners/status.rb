@@ -9,13 +9,13 @@ module Legion
         module Status
           include Legion::Extensions::Nomad::Helpers::Client
 
-          def leader(**opts)
-            response = connection(**opts).get('/v1/status/leader')
+          def leader(**)
+            response = connection(**).get('/v1/status/leader')
             { result: response.body }
           end
 
-          def peers(**opts)
-            response = connection(**opts).get('/v1/status/peers')
+          def peers(**)
+            response = connection(**).get('/v1/status/peers')
             { result: response.body }
           end
 

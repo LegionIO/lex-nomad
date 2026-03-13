@@ -9,26 +9,26 @@ module Legion
         module Variables
           include Legion::Extensions::Nomad::Helpers::Client
 
-          def list_variables(prefix: nil, **opts)
+          def list_variables(prefix: nil, **)
             params = {}
             params[:prefix] = prefix if prefix
-            response = connection(**opts).get('/v1/vars', params)
+            response = connection(**).get('/v1/vars', params)
             { result: response.body }
           end
 
-          def get_variable(path:, **opts)
-            response = connection(**opts).get("/v1/var/#{path}")
+          def get_variable(path:, **)
+            response = connection(**).get("/v1/var/#{path}")
             { result: response.body }
           end
 
-          def create_or_update_variable(path:, items:, **opts)
+          def create_or_update_variable(path:, items:, **)
             body = { Path: path, Items: items }
-            response = connection(**opts).put("/v1/var/#{path}", body)
+            response = connection(**).put("/v1/var/#{path}", body)
             { result: response.body }
           end
 
-          def delete_variable(path:, **opts)
-            response = connection(**opts).delete("/v1/var/#{path}")
+          def delete_variable(path:, **)
+            response = connection(**).delete("/v1/var/#{path}")
             { result: response.status == 200 }
           end
 

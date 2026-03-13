@@ -9,15 +9,15 @@ module Legion
         module Search
           include Legion::Extensions::Nomad::Helpers::Client
 
-          def prefix_search(prefix:, context: 'all', **opts)
+          def prefix_search(prefix:, context: 'all', **)
             body = { Prefix: prefix, Context: context }
-            response = connection(**opts).post('/v1/search', body)
+            response = connection(**).post('/v1/search', body)
             { result: response.body }
           end
 
-          def fuzzy_search(text:, context: 'all', **opts)
+          def fuzzy_search(text:, context: 'all', **)
             body = { Text: text, Context: context }
-            response = connection(**opts).post('/v1/search/fuzzy', body)
+            response = connection(**).post('/v1/search/fuzzy', body)
             { result: response.body }
           end
 

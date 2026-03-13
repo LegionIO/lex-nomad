@@ -9,44 +9,44 @@ module Legion
         module Allocations
           include Legion::Extensions::Nomad::Helpers::Client
 
-          def list_allocations(prefix: nil, **opts)
+          def list_allocations(prefix: nil, **)
             params = {}
             params[:prefix] = prefix if prefix
-            response = connection(**opts).get('/v1/allocations', params)
+            response = connection(**).get('/v1/allocations', params)
             { result: response.body }
           end
 
-          def get_allocation(alloc_id:, **opts)
-            response = connection(**opts).get("/v1/allocation/#{alloc_id}")
+          def get_allocation(alloc_id:, **)
+            response = connection(**).get("/v1/allocation/#{alloc_id}")
             { result: response.body }
           end
 
-          def stop_allocation(alloc_id:, **opts)
-            response = connection(**opts).post("/v1/allocation/#{alloc_id}/stop")
+          def stop_allocation(alloc_id:, **)
+            response = connection(**).post("/v1/allocation/#{alloc_id}/stop")
             { result: response.body }
           end
 
-          def signal_allocation(alloc_id:, signal: 'SIGTERM', task: nil, **opts)
+          def signal_allocation(alloc_id:, signal: 'SIGTERM', task: nil, **)
             body = { Signal: signal }
             body[:Task] = task if task
-            response = connection(**opts).post("/v1/client/allocation/#{alloc_id}/signal", body)
+            response = connection(**).post("/v1/client/allocation/#{alloc_id}/signal", body)
             { result: response.body }
           end
 
-          def restart_allocation(alloc_id:, task: nil, all_tasks: false, **opts)
+          def restart_allocation(alloc_id:, task: nil, all_tasks: false, **)
             body = { AllTasks: all_tasks }
             body[:TaskName] = task if task
-            response = connection(**opts).post("/v1/client/allocation/#{alloc_id}/restart", body)
+            response = connection(**).post("/v1/client/allocation/#{alloc_id}/restart", body)
             { result: response.body }
           end
 
-          def allocation_services(alloc_id:, **opts)
-            response = connection(**opts).get("/v1/allocation/#{alloc_id}/services")
+          def allocation_services(alloc_id:, **)
+            response = connection(**).get("/v1/allocation/#{alloc_id}/services")
             { result: response.body }
           end
 
-          def allocation_checks(alloc_id:, **opts)
-            response = connection(**opts).get("/v1/allocation/#{alloc_id}/checks")
+          def allocation_checks(alloc_id:, **)
+            response = connection(**).get("/v1/allocation/#{alloc_id}/checks")
             { result: response.body }
           end
 

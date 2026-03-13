@@ -15,7 +15,7 @@ RSpec.describe Legion::Extensions::Nomad::Runners::Status do
 
   describe '#leader' do
     it 'returns the cluster leader' do
-      stubs.get('/v1/status/leader') { [200, { 'Content-Type' => 'application/json' }, '10.0.0.1:4647'] }
+      stubs.get('/v1/status/leader') { [200, { 'Content-Type' => 'application/json' }, '"10.0.0.1:4647"'] }
       result = client.leader
       expect(result[:result]).to eq('10.0.0.1:4647')
     end

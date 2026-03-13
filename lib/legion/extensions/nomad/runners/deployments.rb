@@ -9,51 +9,51 @@ module Legion
         module Deployments
           include Legion::Extensions::Nomad::Helpers::Client
 
-          def list_deployments(prefix: nil, **opts)
+          def list_deployments(prefix: nil, **)
             params = {}
             params[:prefix] = prefix if prefix
-            response = connection(**opts).get('/v1/deployments', params)
+            response = connection(**).get('/v1/deployments', params)
             { result: response.body }
           end
 
-          def get_deployment(deployment_id:, **opts)
-            response = connection(**opts).get("/v1/deployment/#{deployment_id}")
+          def get_deployment(deployment_id:, **)
+            response = connection(**).get("/v1/deployment/#{deployment_id}")
             { result: response.body }
           end
 
-          def deployment_allocations(deployment_id:, **opts)
-            response = connection(**opts).get("/v1/deployment/allocations/#{deployment_id}")
+          def deployment_allocations(deployment_id:, **)
+            response = connection(**).get("/v1/deployment/allocations/#{deployment_id}")
             { result: response.body }
           end
 
-          def fail_deployment(deployment_id:, **opts)
-            response = connection(**opts).post("/v1/deployment/fail/#{deployment_id}")
+          def fail_deployment(deployment_id:, **)
+            response = connection(**).post("/v1/deployment/fail/#{deployment_id}")
             { result: response.body }
           end
 
-          def pause_deployment(deployment_id:, pause: true, **opts)
+          def pause_deployment(deployment_id:, pause: true, **)
             body = { DeploymentID: deployment_id, Pause: pause }
-            response = connection(**opts).post("/v1/deployment/pause/#{deployment_id}", body)
+            response = connection(**).post("/v1/deployment/pause/#{deployment_id}", body)
             { result: response.body }
           end
 
-          def promote_deployment(deployment_id:, all: true, groups: nil, **opts)
+          def promote_deployment(deployment_id:, all: true, groups: nil, **)
             body = { DeploymentID: deployment_id, All: all }
             body[:Groups] = groups if groups
-            response = connection(**opts).post("/v1/deployment/promote/#{deployment_id}", body)
+            response = connection(**).post("/v1/deployment/promote/#{deployment_id}", body)
             { result: response.body }
           end
 
-          def set_allocation_health(deployment_id:, healthy_ids: nil, unhealthy_ids: nil, **opts)
+          def set_allocation_health(deployment_id:, healthy_ids: nil, unhealthy_ids: nil, **)
             body = { DeploymentID: deployment_id }
             body[:HealthyAllocationIDs] = healthy_ids if healthy_ids
             body[:UnhealthyAllocationIDs] = unhealthy_ids if unhealthy_ids
-            response = connection(**opts).post("/v1/deployment/allocation-health/#{deployment_id}", body)
+            response = connection(**).post("/v1/deployment/allocation-health/#{deployment_id}", body)
             { result: response.body }
           end
 
-          def unblock_deployment(deployment_id:, **opts)
-            response = connection(**opts).post("/v1/deployment/unblock/#{deployment_id}")
+          def unblock_deployment(deployment_id:, **)
+            response = connection(**).post("/v1/deployment/unblock/#{deployment_id}")
             { result: response.body }
           end
 

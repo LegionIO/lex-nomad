@@ -9,18 +9,18 @@ module Legion
         module Services
           include Legion::Extensions::Nomad::Helpers::Client
 
-          def list_services(**opts)
-            response = connection(**opts).get('/v1/services')
+          def list_services(**)
+            response = connection(**).get('/v1/services')
             { result: response.body }
           end
 
-          def get_service(service_name:, **opts)
-            response = connection(**opts).get("/v1/service/#{service_name}")
+          def get_service(service_name:, **)
+            response = connection(**).get("/v1/service/#{service_name}")
             { result: response.body }
           end
 
-          def delete_service(service_name:, service_id:, **opts)
-            response = connection(**opts).delete("/v1/service/#{service_name}/#{service_id}")
+          def delete_service(service_name:, service_id:, **)
+            response = connection(**).delete("/v1/service/#{service_name}/#{service_id}")
             { result: response.status == 200 }
           end
 
