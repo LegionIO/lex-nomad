@@ -61,6 +61,7 @@ client.leader
 - Ruby >= 3.4
 - [LegionIO](https://github.com/LegionIO/LegionIO) framework (optional for standalone client usage)
 - HashiCorp Nomad cluster (API v1)
+- `faraday` >= 2.0
 
 ## License
 
