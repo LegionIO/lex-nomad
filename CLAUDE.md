@@ -10,6 +10,7 @@ Legion Extension that connects LegionIO to HashiCorp Nomad. Provides runners for
 
 **GitHub**: https://github.com/LegionIO/lex-nomad
 **License**: MIT
+**Version**: 0.1.0
 
 ## Architecture
 
@@ -42,6 +43,8 @@ Legion::Extensions::Nomad
 Authentication uses `X-Nomad-Token` header (ACL token). Namespace scoping via `namespace` query parameter. Default address: `http://127.0.0.1:4646`.
 
 ## Testing
+
+48 specs across 12 spec files.
 
 ```bash
 bundle install
