@@ -10,7 +10,7 @@ Legion Extension that connects LegionIO to HashiCorp Nomad. Provides runners for
 
 **GitHub**: https://github.com/LegionIO/lex-nomad
 **License**: MIT
-**Version**: 0.1.0
+**Version**: 0.1.1
 
 ## Architecture
 
