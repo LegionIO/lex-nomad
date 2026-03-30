@@ -17,7 +17,7 @@ require 'legion/extensions/nomad/client'
 module Legion
   module Extensions
     module Nomad
-      extend Legion::Extensions::Core if Legion::Extensions.const_defined? :Core
+      extend Legion::Extensions::Core if Legion::Extensions.const_defined? :Core, false
     end
   end
 end
